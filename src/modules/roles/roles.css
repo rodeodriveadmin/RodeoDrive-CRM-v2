@@ -1,0 +1,23 @@
+/* ============================================================
+   ROLES CLUSTER — policy matrix editor.
+   ============================================================ */
+
+.roles__desc-cell {
+  max-width: 256px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.policy-matrix {
+  max-height: 55vh;
+  overflow-y: auto;
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-control);
+}
+
+.policy-matrix .table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--color-bg);
+  z-index: 1;
+}

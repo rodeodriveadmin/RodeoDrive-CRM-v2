@@ -1,0 +1,81 @@
+/* Core reset + typography. Colors/branding come exclusively from the
+   organization theme file (/public/themes/<org>.css). */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+::selection {
+  background: var(--color-accent-soft);
+}
+
+.thin-scroll {
+  scrollbar-width: thin;
+}
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: rgb(127 138 163 / 0.35);
+  border-radius: 3px;
+}
+
+/* Brand logo — image comes from the org theme (--org-logo). */
+.brand-logo {
+  background-image: var(--org-logo);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}

@@ -1,0 +1,21 @@
+import { count } from "drizzle-orm";
+import { db, schema } from "@/db";
+import { requireUser } from "@/lib/rbac/server";
+import { DashboardView } from "./view";
+
+export default async function DashboardPage() {
+  const user = await requireUser();
+
+  const [[users], [depts], [rolesCount]] = await Promise.all([
+    db.select({ c: count() }).from(schema.userProfiles),
+    db.select({ c: count() }).from(schema.departments),
+    db.select({ c: count() }).from(schema.roles),
+  ]);
+
+  return (
+    <DashboardView
+      userName={user.name}
+      stats={{ users: users.c, departments: depts.c, roles: rolesCount.c }}
+    />
+  );
+}

@@ -1,0 +1,77 @@
+/* ============================================================
+   AUTH CLUSTER — login screen.
+   Background photo + logo are organization-theme driven:
+   --org-login-bg / --org-login-bg-color / --org-logo
+   ============================================================ */
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 16px;
+  background-color: var(--org-login-bg-color);
+  background-image: var(--org-login-bg);
+  background-size: cover;
+  background-position: center;
+}
+
+.login__box {
+  width: 100%;
+  max-width: 384px;
+}
+
+.login__head {
+  margin-block-end: 32px;
+  text-align: center;
+}
+
+.login__logo {
+  width: 56px;
+  height: 56px;
+  margin-inline: auto;
+  margin-block-end: 16px;
+  border-radius: 16px;
+  background-color: var(--color-accent-soft);
+  box-shadow: inset 0 0 0 1px var(--color-accent);
+}
+
+.login__title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.login__subtitle {
+  margin-block-start: 4px;
+  font-size: 14px;
+  color: rgb(255 255 255 / 0.65);
+}
+
+.login__form {
+  padding: 24px;
+  background: var(--color-surface);
+  border-radius: 16px;
+  box-shadow: var(--shadow-pop);
+}
+
+.login__field {
+  margin-block-end: 16px;
+}
+
+.login__error {
+  margin-block-end: 16px;
+  font-size: 13px;
+  color: var(--color-danger);
+}
+
+.login__lang {
+  display: block;
+  margin-inline: auto;
+  margin-block-start: 24px;
+  font-size: 14px;
+  color: rgb(255 255 255 / 0.6);
+}
+.login__lang:hover {
+  color: #fff;
+}

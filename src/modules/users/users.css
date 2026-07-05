@@ -1,0 +1,12 @@
+/* ============================================================
+   USERS CLUSTER
+   ============================================================ */
+
+.users__search {
+  width: 176px;
+}
+
+.users__modal-email {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}

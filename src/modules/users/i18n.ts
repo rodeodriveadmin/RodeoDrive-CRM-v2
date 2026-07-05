@@ -1,0 +1,37 @@
+// Strings owned by the users cluster.
+
+export const usersEn = {
+  "users.title": "Users",
+  "users.invite": "Invite user",
+  "users.fullName": "Full name",
+  "users.employeeId": "Employee ID",
+  "users.mobile": "Mobile number",
+  "users.department": "Department",
+  "users.role": "Role",
+  "users.password": "Temporary password",
+  "users.newPassword": "New password",
+  "users.resetPassword": "Reset password",
+  "users.activate": "Activate",
+  "users.deactivate": "Deactivate",
+  "users.none": "No users yet",
+  "users.root": "Root",
+  "users.emailExists": "A user with this email already exists",
+} as const;
+
+export const usersAr: Record<keyof typeof usersEn, string> = {
+  "users.title": "المستخدمون",
+  "users.invite": "دعوة مستخدم",
+  "users.fullName": "الاسم الكامل",
+  "users.employeeId": "الرقم الوظيفي",
+  "users.mobile": "رقم الجوال",
+  "users.department": "القسم",
+  "users.role": "الدور",
+  "users.password": "كلمة مرور مؤقتة",
+  "users.newPassword": "كلمة المرور الجديدة",
+  "users.resetPassword": "إعادة تعيين كلمة المرور",
+  "users.activate": "تفعيل",
+  "users.deactivate": "إيقاف",
+  "users.none": "لا يوجد مستخدمون بعد",
+  "users.root": "مدير أعلى",
+  "users.emailExists": "يوجد مستخدم بهذا البريد مسبقاً",
+};

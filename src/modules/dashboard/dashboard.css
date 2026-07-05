@@ -1,0 +1,73 @@
+/* ============================================================
+   DASHBOARD CLUSTER
+   ============================================================ */
+
+.dashboard__title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.dashboard__stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-block-start: 24px;
+}
+
+@media (min-width: 640px) {
+  .dashboard__stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stat-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.stat-card__value {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.stat-card__label {
+  font-size: 14px;
+  color: var(--color-text-faint);
+}
+
+.dashboard__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-block-start: 24px;
+}
+
+.dashboard__note-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.dashboard__note-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}

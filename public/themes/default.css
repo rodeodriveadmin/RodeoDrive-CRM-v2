@@ -1,0 +1,71 @@
+/* ============================================================
+   ORGANIZATION THEME — default (Rodeo Drive)
+   ------------------------------------------------------------
+   This file is the ONLY thing you need to copy + edit to fully
+   re-brand the CRM for another organization:
+
+     1. Copy to  /public/themes/<org-name>.css
+     2. Change the variables below (colors, logo, backgrounds)
+     3. Set  NEXT_PUBLIC_ORG_THEME=<org-name>  in the environment
+
+   Every component in the app reads ONLY these variables —
+   no component code ever needs to change for a new brand.
+   ============================================================ */
+
+:root {
+  /* ---------- Brand identity ---------- */
+  --org-logo: url("/icon.svg");              /* square logo (sidebar, login) */
+  --org-login-bg: none;                      /* e.g. url("/themes/assets/my-bg.jpg") */
+  --org-login-bg-color: #0b0d12;             /* used when no photo is set */
+
+  /* ---------- Core palette ---------- */
+  --color-accent: #c69a3f;                   /* brand accent (gold) */
+  --color-accent-soft: rgba(198, 154, 63, 0.14);
+  --color-accent-text: #d9ba75;              /* accent on dark surfaces */
+
+  --color-primary: #14161d;                  /* primary buttons */
+  --color-primary-hover: #2c3140;
+  --color-primary-contrast: #ffffff;
+
+  /* ---------- Surfaces ---------- */
+  --color-bg: #f6f7f9;                       /* page background */
+  --color-surface: #ffffff;                  /* cards, modals */
+  --color-surface-hover: #f1f2f6;
+
+  /* ---------- Sidebar ---------- */
+  --color-sidebar-bg: #0b0d12;
+  --color-sidebar-text: #acb4c4;
+  --color-sidebar-text-dim: #5f6b88;
+  --color-sidebar-active-bg: rgba(198, 154, 63, 0.15);
+  --color-sidebar-active-text: #d9ba75;
+  --color-sidebar-border: rgba(255, 255, 255, 0.1);
+
+  /* ---------- Text ---------- */
+  --color-text: #14161d;
+  --color-text-muted: #5f6b88;
+  --color-text-faint: #7f8aa3;
+
+  /* ---------- Lines & controls ---------- */
+  --color-border: #d3d7e0;
+  --color-border-soft: #ebedf1;
+  --color-focus-ring: #c69a3f;
+
+  /* ---------- Status ---------- */
+  --color-success: #047857;
+  --color-success-bg: #ecfdf5;
+  --color-danger: #dc2626;
+  --color-danger-bg: #fef2f2;
+  --color-danger-hover: #b91c1c;
+  --color-warning: #b45309;
+  --color-warning-bg: #fffbeb;
+
+  /* ---------- Shape & depth ---------- */
+  --radius-card: 14px;
+  --radius-control: 8px;
+  --shadow-card: 0 1px 2px 0 rgb(16 24 40 / 0.06), 0 1px 3px 0 rgb(16 24 40 / 0.1);
+  --shadow-pop: 0 8px 24px -4px rgb(16 24 40 / 0.16), 0 4px 8px -2px rgb(16 24 40 / 0.06);
+
+  /* ---------- Typography ---------- */
+  /* --font-inter / --font-tajawal are injected by the app (next/font). */
+  --font-sans: var(--font-inter), var(--font-tajawal), ui-sans-serif, system-ui, sans-serif;
+}

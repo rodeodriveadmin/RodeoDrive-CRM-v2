@@ -1,0 +1,27 @@
+/* ============================================================
+   EXAMPLE ORGANIZATION THEME — copy of default.css with a blue
+   identity. Activate with:  NEXT_PUBLIC_ORG_THEME=example-org
+   Put this org's images in /public/themes/assets/ and reference
+   them below (logo, login background photo, …).
+   ============================================================ */
+
+@import url("/themes/default.css");
+
+:root {
+  --org-logo: url("/icon.svg");                    /* replace with e.g. url("/themes/assets/acme-logo.png") */
+  --org-login-bg: none;                            /* e.g. url("/themes/assets/acme-login.jpg") */
+  --org-login-bg-color: #0a1a2f;
+
+  --color-accent: #2f6fed;
+  --color-accent-soft: rgba(47, 111, 237, 0.12);
+  --color-accent-text: #7ea6f5;
+
+  --color-primary: #10233f;
+  --color-primary-hover: #1c3a66;
+
+  --color-sidebar-bg: #0a1a2f;
+  --color-sidebar-active-bg: rgba(47, 111, 237, 0.18);
+  --color-sidebar-active-text: #7ea6f5;
+
+  --color-focus-ring: #2f6fed;
+}
