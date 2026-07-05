@@ -67,9 +67,9 @@ audit trail, session hygiene) and the deployment checklist.
 
 ```bash
 npm install
-npm run db:push    # create tables (embedded PGlite in ./.pglite — no DB install needed)
-npm run db:seed    # Administrator role + Management department + root admin from .env.local
-npm run dev        # http://localhost:3000
+npm run db:push        # create tables (embedded PGlite in ./.pglite — no DB install needed)
+npm run db:seed:dev    # Administrator role + Management department + root admin from .env.local
+npm run dev            # http://localhost:3000
 ```
 
 Copy `.env.example` to `.env.local` first and set `ROOT_ADMIN_EMAIL` / `ROOT_ADMIN_PASSWORD`.
@@ -84,11 +84,16 @@ Set these env vars (e.g. on Railway):
 - `ROOT_ADMIN_EMAIL`, `ROOT_ADMIN_PASSWORD`, `ROOT_ADMIN_NAME` — first admin account
 - `NEXT_PUBLIC_ORG_THEME` — organization theme file name (default: `default`)
 
-Then:
+Then run once against the production database (locally with the vars set, or via
+`railway run`):
 
 ```bash
-npm run db:push && npm run db:seed && npm run build && npm start
+npm run deploy:setup   # drizzle-kit push + seed (idempotent)
 ```
+
+Railway specifics: deploy from the GitHub repo (build `npm run build`, start
+`npm start` — auto-detected), add a PostgreSQL service, and on the app service set
+`DATABASE_URL = ${{Postgres.DATABASE_URL}}` plus the auth/root-admin vars above.
 
 ## Roadmap
 
