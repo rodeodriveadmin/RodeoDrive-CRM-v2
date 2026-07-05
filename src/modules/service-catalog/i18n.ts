@@ -1,0 +1,81 @@
+// Strings owned by the service-catalog cluster.
+
+export const catalogEn = {
+  "catalog.title": "Service Catalog",
+  "catalog.tab.services": "Services & Packages",
+  "catalog.tab.categories": "Categories",
+  "catalog.tab.specs": "Brand Specifications",
+
+  "catalog.code": "Code",
+  "catalog.nameEn": "Name (English)",
+  "catalog.nameAr": "Name (Arabic)",
+  "catalog.descriptionEn": "Description (English)",
+  "catalog.descriptionAr": "Description (Arabic)",
+
+  "catalog.addCategory": "Add category",
+  "catalog.parentCategory": "Parent category",
+  "catalog.noParent": "— top level —",
+  "catalog.categoriesNone": "No categories yet",
+  "catalog.categoryHasChildren": "Remove its subcategories first",
+  "catalog.categoryInUse": "Category is used by services; reassign them first",
+
+  "catalog.addSpec": "Add specification",
+  "catalog.brandName": "Brand name",
+  "catalog.color": "Color",
+  "catalog.specAttributes": "Attributes (one per line, e.g. Thickness: 8 mil)",
+  "catalog.specsNone": "No brand specifications yet",
+  "catalog.specInUse": "Specification is used by services; reassign them first",
+
+  "catalog.addService": "Add service",
+  "catalog.type": "Type",
+  "catalog.type.SERVICE": "Service",
+  "catalog.type.PACKAGE": "Package",
+  "catalog.category": "Category",
+  "catalog.spec": "Brand spec",
+  "catalog.pricing": "Pricing per vehicle type",
+  "catalog.priceEmptyHint": "Leave empty when not offered for that type",
+  "catalog.includedServices": "Included services (package)",
+  "catalog.servicesNone": "No services yet",
+  "catalog.priceFrom": "From",
+  "catalog.codeExists": "This code is already used",
+} as const;
+
+export const catalogAr: Record<keyof typeof catalogEn, string> = {
+  "catalog.title": "كتالوج الخدمات",
+  "catalog.tab.services": "الخدمات والباقات",
+  "catalog.tab.categories": "التصنيفات",
+  "catalog.tab.specs": "مواصفات العلامات",
+
+  "catalog.code": "الرمز",
+  "catalog.nameEn": "الاسم (إنجليزي)",
+  "catalog.nameAr": "الاسم (عربي)",
+  "catalog.descriptionEn": "الوصف (إنجليزي)",
+  "catalog.descriptionAr": "الوصف (عربي)",
+
+  "catalog.addCategory": "إضافة تصنيف",
+  "catalog.parentCategory": "التصنيف الأب",
+  "catalog.noParent": "— مستوى أول —",
+  "catalog.categoriesNone": "لا توجد تصنيفات بعد",
+  "catalog.categoryHasChildren": "احذف التصنيفات الفرعية أولاً",
+  "catalog.categoryInUse": "التصنيف مستخدم في خدمات؛ انقلها أولاً",
+
+  "catalog.addSpec": "إضافة مواصفة",
+  "catalog.brandName": "اسم العلامة",
+  "catalog.color": "اللون",
+  "catalog.specAttributes": "الخصائص (سطر لكل خاصية، مثال: السماكة: 8 مل)",
+  "catalog.specsNone": "لا توجد مواصفات بعد",
+  "catalog.specInUse": "المواصفة مستخدمة في خدمات؛ انقلها أولاً",
+
+  "catalog.addService": "إضافة خدمة",
+  "catalog.type": "النوع",
+  "catalog.type.SERVICE": "خدمة",
+  "catalog.type.PACKAGE": "باقة",
+  "catalog.category": "التصنيف",
+  "catalog.spec": "مواصفة العلامة",
+  "catalog.pricing": "التسعير حسب نوع المركبة",
+  "catalog.priceEmptyHint": "اتركه فارغاً إذا لم تتوفر الخدمة لهذا النوع",
+  "catalog.includedServices": "الخدمات المشمولة (باقة)",
+  "catalog.servicesNone": "لا توجد خدمات بعد",
+  "catalog.priceFrom": "ابتداءً من",
+  "catalog.codeExists": "هذا الرمز مستخدم مسبقاً",
+};

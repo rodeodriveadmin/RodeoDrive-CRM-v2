@@ -1,0 +1,18 @@
+/* ============================================================
+   VEHICLES CLUSTER
+   ============================================================ */
+
+.vehicles__search {
+  width: 200px;
+}
+
+.vehicles__plate {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  background: var(--color-bg);
+}

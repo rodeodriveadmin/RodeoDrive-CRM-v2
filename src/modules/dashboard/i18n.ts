@@ -6,8 +6,11 @@ export const dashboardEn = {
   "dashboard.users": "Users",
   "dashboard.departments": "Departments",
   "dashboard.roles": "Roles",
-  "dashboard.phase1Note":
-    "Phase 1 foundation is live: authentication, RBAC, users, departments and roles. Next phases add customers, vehicles, job orders and the rest.",
+  "dashboard.customers": "Customers",
+  "dashboard.vehicles": "Vehicles",
+  "dashboard.services": "Services",
+  "dashboard.phaseNote":
+    "Phases 1–2 are live: authentication, RBAC, users, departments, roles, customers, vehicles and the service catalog. Next: job orders, payments and invoicing.",
 } as const;
 
 export const dashboardAr: Record<keyof typeof dashboardEn, string> = {
@@ -16,6 +19,9 @@ export const dashboardAr: Record<keyof typeof dashboardEn, string> = {
   "dashboard.users": "المستخدمون",
   "dashboard.departments": "الأقسام",
   "dashboard.roles": "الأدوار",
-  "dashboard.phase1Note":
-    "المرحلة الأولى جاهزة: تسجيل الدخول، الصلاحيات، المستخدمون، الأقسام والأدوار. المراحل القادمة تضيف العملاء والمركبات وأوامر العمل وبقية الوحدات.",
+  "dashboard.customers": "العملاء",
+  "dashboard.vehicles": "المركبات",
+  "dashboard.services": "الخدمات",
+  "dashboard.phaseNote":
+    "المرحلتان الأولى والثانية جاهزتان: تسجيل الدخول، الصلاحيات، المستخدمون، الأقسام، الأدوار، العملاء، المركبات وكتالوج الخدمات. التالي: أوامر العمل والمدفوعات والفواتير.",
 };

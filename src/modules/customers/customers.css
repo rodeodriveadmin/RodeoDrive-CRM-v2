@@ -1,0 +1,66 @@
+/* ============================================================
+   CUSTOMERS CLUSTER
+   ============================================================ */
+
+.customers__search {
+  width: 200px;
+}
+
+.customers__name-link {
+  font-weight: 500;
+  color: var(--color-text);
+}
+.customers__name-link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* ---- detail page ---- */
+.customer-detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 900px) {
+  .customer-detail {
+    grid-template-columns: 320px 1fr;
+    align-items: start;
+  }
+}
+
+.customer-detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-block-end: 16px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+.customer-detail__back:hover {
+  color: var(--color-text);
+}
+
+.customer-detail__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+}
+
+.customer-detail__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.customer-detail__label {
+  color: var(--color-text-faint);
+  flex-shrink: 0;
+}
+
+.customer-detail__value {
+  text-align: end;
+  overflow-wrap: anywhere;
+}

@@ -1,4 +1,4 @@
-import {
+﻿import {
   LayoutDashboard,
   Users,
   Car,
@@ -49,8 +49,8 @@ export const NAV_GROUPS: NavGroup[] = [
     labelKey: "nav.group.operations",
     items: [
       { labelKey: "nav.dashboard", href: "/dashboard", icon: LayoutDashboard, policy: "DASHBOARD", ready: true },
-      { labelKey: "nav.customers", href: "/customers", icon: Users, policy: "CUSTOMERS", ready: false },
-      { labelKey: "nav.vehicles", href: "/vehicles", icon: Car, policy: "VEHICLES", ready: false },
+      { labelKey: "nav.customers", href: "/customers", icon: Users, policy: "CUSTOMERS", ready: true },
+      { labelKey: "nav.vehicles", href: "/vehicles", icon: Car, policy: "VEHICLES", ready: true },
       { labelKey: "nav.jobOrders", href: "/job-orders", icon: ClipboardList, policy: "JOB_ORDERS", ready: false },
       { labelKey: "nav.inspections", href: "/inspections", icon: SearchCheck, policy: "INSPECTIONS", ready: false },
       { labelKey: "nav.qualityCheck", href: "/quality-check", icon: BadgeCheck, policy: "QUALITY_CHECK", ready: false },
@@ -70,7 +70,7 @@ export const NAV_GROUPS: NavGroup[] = [
   {
     labelKey: "nav.group.catalog",
     items: [
-      { labelKey: "nav.serviceCatalog", href: "/service-catalog", icon: BookOpen, policy: "SERVICE_CATALOG", ready: false },
+      { labelKey: "nav.serviceCatalog", href: "/service-catalog", icon: BookOpen, policy: "SERVICE_CATALOG", ready: true },
       { labelKey: "nav.inventory", href: "/inventory", icon: Boxes, policy: "INVENTORY", ready: false },
       { labelKey: "nav.employees", href: "/employees", icon: IdCard, policy: "EMPLOYEES", ready: false },
       { labelKey: "nav.technicians", href: "/technicians", icon: HardHat, policy: "TECHNICIANS", ready: false },

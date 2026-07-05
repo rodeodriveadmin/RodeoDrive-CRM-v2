@@ -3,7 +3,13 @@
 // Shared UI cluster: primitives styled exclusively via the classes in
 // src/styles/components.css, which reference organization-theme variables.
 
-import { type ButtonHTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes } from "react";
+import {
+  type ButtonHTMLAttributes,
+  type InputHTMLAttributes,
+  type ReactNode,
+  type SelectHTMLAttributes,
+  type TextareaHTMLAttributes,
+} from "react";
 import { X } from "lucide-react";
 
 function cx(...parts: Array<string | false | null | undefined>) {
@@ -34,6 +40,10 @@ export function Label({ children, htmlFor }: { children: ReactNode; htmlFor?: st
 
 export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElement>) {
   return <input className={cx("input", className)} {...props} />;
+}
+
+export function Textarea({ className, ...props }: TextareaHTMLAttributes<HTMLTextAreaElement>) {
+  return <textarea className={cx("input", className)} rows={props.rows ?? 3} {...props} />;
 }
 
 export function Select({ className, children, ...props }: SelectHTMLAttributes<HTMLSelectElement>) {
