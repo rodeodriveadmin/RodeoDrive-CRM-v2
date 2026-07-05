@@ -92,9 +92,13 @@ npm run db:push && npm run db:seed && npm run build && npm start
 
 ## Roadmap
 
-1. ✅ Phase 1 — auth, RBAC, users, departments, roles, activity log, app shell, theming, PWA
-2. Customers, vehicles, service catalog (categories, brand specs, per-vehicle-type pricing)
-3. Job orders (lifecycle, service items, roadmap, documents), payments, invoices, quotations, vouchers
-4. Inspections, quality check, service execution, exit permits
-5. Inventory, dashboard analytics, daily/scheduled reports
-6. Drive (files), internal chat, campaigns, SMS provider, tickets, deals
+1. ✅ Auth, RBAC, users, departments, roles, activity log, app shell, theming, PWA
+2. ✅ Customers, vehicles, service catalog (categories, brand specs, per-vehicle-type pricing)
+3. ✅ Job orders (lifecycle, service items, timeline), payments (PCI-guarded), quotations, vouchers, printable tax invoice
+4. ✅ Inspections, quality check, service execution, exit permits
+5. ✅ Inventory, employees, technicians, daily report, dashboard analytics
+6. ✅ Drive (local storage driver; S3-compatible swap at deploy), internal chat, campaigns (CSV import), SMS (simulated provider), tickets, deals
+
+**Deployment next:** Railway + PostgreSQL, Cloudflare R2 for drive storage, Resend for
+scheduled report emails, and a real SMS provider (Twilio/Unifonic/Msegat) behind
+`src/lib/sms.ts`.

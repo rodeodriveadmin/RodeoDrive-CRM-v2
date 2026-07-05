@@ -25,6 +25,12 @@ import { employeesEn, employeesAr } from "@/modules/employees/i18n";
 import { techniciansEn, techniciansAr } from "@/modules/technicians/i18n";
 import { inventoryEn, inventoryAr } from "@/modules/inventory/i18n";
 import { dailyEn, dailyAr } from "@/modules/daily-report/i18n";
+import { ticketsEn, ticketsAr } from "@/modules/tickets/i18n";
+import { dealsEn, dealsAr } from "@/modules/deals/i18n";
+import { chatEn, chatAr } from "@/modules/chat/i18n";
+import { driveEn, driveAr } from "@/modules/drive/i18n";
+import { campaignsEn, campaignsAr } from "@/modules/campaigns/i18n";
+import { smsEn, smsAr } from "@/modules/sms/i18n";
 
 export type Lang = "en" | "ar";
 
@@ -52,6 +58,12 @@ const en = {
   ...techniciansEn,
   ...inventoryEn,
   ...dailyEn,
+  ...ticketsEn,
+  ...dealsEn,
+  ...chatEn,
+  ...driveEn,
+  ...campaignsEn,
+  ...smsEn,
 } as const;
 
 export type DictKey = keyof typeof en;
@@ -80,6 +92,12 @@ const ar: Record<DictKey, string> = {
   ...techniciansAr,
   ...inventoryAr,
   ...dailyAr,
+  ...ticketsAr,
+  ...dealsAr,
+  ...chatAr,
+  ...driveAr,
+  ...campaignsAr,
+  ...smsAr,
 };
 
 export const dictionaries: Record<Lang, Record<DictKey, string>> = { en, ar };

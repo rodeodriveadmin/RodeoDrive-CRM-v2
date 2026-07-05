@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ["@electric-sql/pglite"],
   output: "standalone",
   outputFileTracingRoot: process.cwd(),
+  experimental: {
+    serverActions: {
+      // drive uploads go through server actions
+      bodySizeLimit: "20mb",
+    },
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

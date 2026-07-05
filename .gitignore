@@ -9,6 +9,9 @@ next-env.d.ts
 # local dev database (PGlite)
 .pglite/
 
+# local file storage (drive cluster, dev driver)
+storage/
+
 # env
 .env
 .env.local

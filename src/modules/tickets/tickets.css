@@ -1,0 +1,80 @@
+/* ============================================================
+   TICKETS CLUSTER — detail page + comment thread.
+   ============================================================ */
+
+.ticket__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-block-end: 16px;
+}
+
+.ticket__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+
+.ticket__meta {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.ticket__meta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ticket__meta-label {
+  color: var(--color-text-faint);
+  flex-shrink: 0;
+}
+
+.ticket__description {
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  white-space: pre-wrap;
+}
+
+.ticket__comments {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px;
+}
+
+.ticket__comment {
+  background: var(--color-bg);
+  border-radius: var(--radius-control);
+  padding: 10px 14px;
+}
+
+.ticket__comment-meta {
+  font-size: 11px;
+  color: var(--color-text-faint);
+  margin-block-end: 4px;
+}
+
+.ticket__comment-body {
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.ticket__composer {
+  display: flex;
+  gap: 8px;
+  padding: 0 20px 16px;
+}
+.ticket__composer .input {
+  flex: 1;
+}
