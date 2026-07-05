@@ -98,7 +98,10 @@ npm run db:push && npm run db:seed && npm run build && npm start
 4. ✅ Inspections, quality check, service execution, exit permits
 5. ✅ Inventory, employees, technicians, daily report, dashboard analytics
 6. ✅ Drive (local storage driver; S3-compatible swap at deploy), internal chat, campaigns (CSV import), SMS (simulated provider), tickets, deals
+7. ✅ Scheduled reports — in-app minute scheduler (`instrumentation.ts`), 4 report types
+   rendered as email HTML, sent via `src/lib/email.ts` (Resend when `RESEND_API_KEY`
+   is set, SIMULATED otherwise)
 
-**Deployment next:** Railway + PostgreSQL, Cloudflare R2 for drive storage, Resend for
-scheduled report emails, and a real SMS provider (Twilio/Unifonic/Msegat) behind
-`src/lib/sms.ts`.
+**All modules complete. Deployment next:** Railway + PostgreSQL, Cloudflare R2 for
+drive storage, `RESEND_API_KEY` + `EMAIL_FROM` for report emails, and a real SMS
+provider (Twilio/Unifonic/Msegat) behind `src/lib/sms.ts`.

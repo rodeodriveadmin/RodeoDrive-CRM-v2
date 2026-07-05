@@ -31,6 +31,7 @@ import { chatEn, chatAr } from "@/modules/chat/i18n";
 import { driveEn, driveAr } from "@/modules/drive/i18n";
 import { campaignsEn, campaignsAr } from "@/modules/campaigns/i18n";
 import { smsEn, smsAr } from "@/modules/sms/i18n";
+import { reportsEn, reportsAr } from "@/modules/scheduled-reports/i18n";
 
 export type Lang = "en" | "ar";
 
@@ -64,6 +65,7 @@ const en = {
   ...driveEn,
   ...campaignsEn,
   ...smsEn,
+  ...reportsEn,
 } as const;
 
 export type DictKey = keyof typeof en;
@@ -98,6 +100,7 @@ const ar: Record<DictKey, string> = {
   ...driveAr,
   ...campaignsAr,
   ...smsAr,
+  ...reportsAr,
 };
 
 export const dictionaries: Record<Lang, Record<DictKey, string>> = { en, ar };

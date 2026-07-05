@@ -86,7 +86,7 @@ export const NAV_GROUPS: NavGroup[] = [
       { labelKey: "nav.sms", href: "/sms", icon: MessageSquareText, policy: "SMS", ready: true },
       { labelKey: "nav.chat", href: "/chat", icon: MessagesSquare, policy: "INTERNAL_CHAT", ready: true },
       { labelKey: "nav.drive", href: "/drive", icon: FolderOpen, policy: "DRIVE", ready: true },
-      { labelKey: "nav.scheduledReports", href: "/scheduled-reports", icon: CalendarClock, policy: "SCHEDULED_REPORTS", ready: false },
+      { labelKey: "nav.scheduledReports", href: "/scheduled-reports", icon: CalendarClock, policy: "SCHEDULED_REPORTS", ready: true },
     ],
   },
   {
