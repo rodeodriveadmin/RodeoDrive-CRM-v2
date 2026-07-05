@@ -13,6 +13,8 @@ import { rolesEn, rolesAr } from "@/modules/roles/i18n";
 import { customersEn, customersAr } from "@/modules/customers/i18n";
 import { vehiclesEn, vehiclesAr } from "@/modules/vehicles/i18n";
 import { catalogEn, catalogAr } from "@/modules/service-catalog/i18n";
+import { jobOrdersEn, jobOrdersAr } from "@/modules/job-orders/i18n";
+import { paymentsEn, paymentsAr } from "@/modules/payments/i18n";
 
 export type Lang = "en" | "ar";
 
@@ -28,6 +30,8 @@ const en = {
   ...customersEn,
   ...vehiclesEn,
   ...catalogEn,
+  ...jobOrdersEn,
+  ...paymentsEn,
 } as const;
 
 export type DictKey = keyof typeof en;
@@ -44,6 +48,8 @@ const ar: Record<DictKey, string> = {
   ...customersAr,
   ...vehiclesAr,
   ...catalogAr,
+  ...jobOrdersAr,
+  ...paymentsAr,
 };
 
 export const dictionaries: Record<Lang, Record<DictKey, string>> = { en, ar };

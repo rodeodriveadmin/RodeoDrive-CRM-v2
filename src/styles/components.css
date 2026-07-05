@@ -108,6 +108,11 @@
   color: var(--color-danger);
 }
 
+.form-hint {
+  font-size: 12px;
+  color: var(--color-text-faint);
+}
+
 .form-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -308,6 +313,19 @@
 .empty-state__text {
   font-size: 14px;
   color: var(--color-text-faint);
+}
+
+/* ---------- Back link (detail pages) ---------- */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-block-end: 16px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+.back-link:hover {
+  color: var(--color-text);
 }
 
 /* ---------- Card toolbar search ---------- */

@@ -29,18 +29,6 @@
   }
 }
 
-.customer-detail__back {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-block-end: 16px;
-  font-size: 14px;
-  color: var(--color-text-muted);
-}
-.customer-detail__back:hover {
-  color: var(--color-text);
-}
-
 .customer-detail__rows {
   display: flex;
   flex-direction: column;

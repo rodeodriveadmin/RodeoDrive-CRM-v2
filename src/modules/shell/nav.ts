@@ -51,7 +51,7 @@ export const NAV_GROUPS: NavGroup[] = [
       { labelKey: "nav.dashboard", href: "/dashboard", icon: LayoutDashboard, policy: "DASHBOARD", ready: true },
       { labelKey: "nav.customers", href: "/customers", icon: Users, policy: "CUSTOMERS", ready: true },
       { labelKey: "nav.vehicles", href: "/vehicles", icon: Car, policy: "VEHICLES", ready: true },
-      { labelKey: "nav.jobOrders", href: "/job-orders", icon: ClipboardList, policy: "JOB_ORDERS", ready: false },
+      { labelKey: "nav.jobOrders", href: "/job-orders", icon: ClipboardList, policy: "JOB_ORDERS", ready: true },
       { labelKey: "nav.inspections", href: "/inspections", icon: SearchCheck, policy: "INSPECTIONS", ready: false },
       { labelKey: "nav.qualityCheck", href: "/quality-check", icon: BadgeCheck, policy: "QUALITY_CHECK", ready: false },
       { labelKey: "nav.serviceExecution", href: "/service-execution", icon: Wrench, policy: "SERVICE_EXECUTION", ready: false },
@@ -61,7 +61,7 @@ export const NAV_GROUPS: NavGroup[] = [
   {
     labelKey: "nav.group.finance",
     items: [
-      { labelKey: "nav.payments", href: "/payments", icon: CreditCard, policy: "PAYMENTS", ready: false },
+      { labelKey: "nav.payments", href: "/payments", icon: CreditCard, policy: "PAYMENTS", ready: true },
       { labelKey: "nav.quotations", href: "/quotations", icon: FileText, policy: "QUOTATIONS", ready: false },
       { labelKey: "nav.vouchers", href: "/vouchers", icon: Gift, policy: "VOUCHERS", ready: false },
       { labelKey: "nav.dailyReport", href: "/daily-report", icon: CalendarDays, policy: "DAILY_REPORT", ready: false },

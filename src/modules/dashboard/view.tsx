@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Users, Building2, ShieldCheck, Rocket, Contact, Car, BookOpen } from "lucide-react";
+import { Users, Building2, ShieldCheck, Rocket, Contact, Car, BookOpen, ClipboardList } from "lucide-react";
 import { Card } from "@/components/ui";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 import "./dashboard.css";
@@ -18,11 +18,13 @@ export function DashboardView({
     customers: number;
     vehicles: number;
     services: number;
+    jobOrders: number;
   };
 }) {
   const { t } = useLang();
 
   const items = [
+    { label: t("dashboard.jobOrders"), value: stats.jobOrders, icon: ClipboardList, href: "/job-orders" },
     { label: t("dashboard.customers"), value: stats.customers, icon: Contact, href: "/customers" },
     { label: t("dashboard.vehicles"), value: stats.vehicles, icon: Car, href: "/vehicles" },
     { label: t("dashboard.services"), value: stats.services, icon: BookOpen, href: "/service-catalog" },

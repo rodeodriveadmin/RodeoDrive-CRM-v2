@@ -1,0 +1,194 @@
+/* ============================================================
+   JOB-ORDERS CLUSTER — list, detail layout, timeline.
+   ============================================================ */
+
+.jobs__order-link {
+  font-weight: 600;
+  color: var(--color-text);
+}
+.jobs__order-link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.jobs__filter {
+  width: 160px;
+}
+
+/* ---- detail layout ---- */
+.job-detail__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-block-end: 16px;
+}
+
+.job-detail__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.job-detail__head-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.job-detail__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 1100px) {
+  .job-detail__grid {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+  }
+}
+
+.job-detail__col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.job-detail__info-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 20px;
+}
+
+.job-detail__info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.job-detail__info-label {
+  color: var(--color-text-faint);
+  flex-shrink: 0;
+}
+
+/* ---- billing summary ---- */
+.billing__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 20px;
+}
+
+.billing__row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.billing__row--total {
+  padding-block-start: 8px;
+  border-block-start: 1px solid var(--color-border-soft);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.billing__row--due {
+  font-weight: 600;
+  color: var(--color-danger);
+}
+.billing__row--due.is-settled {
+  color: var(--color-success);
+}
+
+.billing__inputs {
+  display: flex;
+  gap: 12px;
+  padding: 0 20px 16px;
+}
+.billing__inputs > div {
+  flex: 1;
+}
+
+/* ---- inline add-service row ---- */
+.jobs__add-row {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  border-block-start: 1px solid var(--color-border-soft);
+  flex-wrap: wrap;
+}
+.jobs__add-row .select {
+  flex: 2;
+  min-width: 180px;
+}
+.jobs__add-row .input {
+  flex: 1;
+  min-width: 70px;
+}
+
+/* ---- timeline ---- */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 20px 16px;
+}
+
+.timeline__item {
+  position: relative;
+  padding-inline-start: 20px;
+  padding-block: 8px;
+}
+
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 4px;
+  top: 14px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.timeline__item::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 7px;
+  top: 24px;
+  bottom: -6px;
+  width: 2px;
+  background: var(--color-border-soft);
+}
+.timeline__item:last-child::after {
+  display: none;
+}
+
+.timeline__label {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.timeline__detail {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.timeline__meta {
+  font-size: 11px;
+  color: var(--color-text-faint);
+}
+
+/* ---- qty/price inline inputs in services table ---- */
+.jobs__cell-input {
+  width: 76px;
+  padding: 4px 8px;
+  font-size: 13px;
+}

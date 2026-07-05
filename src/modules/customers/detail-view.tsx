@@ -49,7 +49,7 @@ export function CustomerDetailView({
   if (!customer) {
     return (
       <div className="page page--md">
-        <Link href="/customers" className="customer-detail__back">
+        <Link href="/customers" className="back-link">
           <ArrowLeft size={15} aria-hidden />
           {t("customers.backToList")}
         </Link>
@@ -90,7 +90,7 @@ export function CustomerDetailView({
 
   return (
     <div className="page page--lg">
-      <Link href="/customers" className="customer-detail__back">
+      <Link href="/customers" className="back-link">
         <ArrowLeft size={15} aria-hidden />
         {t("customers.backToList")}
       </Link>

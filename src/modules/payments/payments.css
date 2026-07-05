@@ -1,0 +1,57 @@
+/* ============================================================
+   PAYMENTS CLUSTER — overview stats.
+   ============================================================ */
+
+.payments__stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-block-end: 16px;
+}
+
+@media (min-width: 640px) {
+  .payments__stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.payments__stat {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.payments__stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.payments__stat-icon--success {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.payments__stat-icon--danger {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.payments__stat-value {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.payments__stat-label {
+  font-size: 13px;
+  color: var(--color-text-faint);
+}
+
+.payments__filter {
+  width: 160px;
+}

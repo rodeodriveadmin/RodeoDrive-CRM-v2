@@ -6,7 +6,7 @@ import { DashboardView } from "./view";
 export default async function DashboardPage() {
   const user = await requireUser();
 
-  const [[users], [depts], [rolesCount], [customersCount], [vehiclesCount], [servicesCount]] =
+  const [[users], [depts], [rolesCount], [customersCount], [vehiclesCount], [servicesCount], [ordersCount]] =
     await Promise.all([
       db.select({ c: count() }).from(schema.userProfiles),
       db.select({ c: count() }).from(schema.departments),
@@ -14,6 +14,7 @@ export default async function DashboardPage() {
       db.select({ c: count() }).from(schema.customers),
       db.select({ c: count() }).from(schema.vehicles),
       db.select({ c: count() }).from(schema.services),
+      db.select({ c: count() }).from(schema.jobOrders),
     ]);
 
   return (
@@ -26,6 +27,7 @@ export default async function DashboardPage() {
         customers: customersCount.c,
         vehicles: vehiclesCount.c,
         services: servicesCount.c,
+        jobOrders: ordersCount.c,
       }}
     />
   );
