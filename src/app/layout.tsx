@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/lib/i18n/LanguageProvider";
 import type { Lang } from "@/lib/i18n/dictionaries";
 import "@/styles/base.css";
 import "@/styles/components.css";
+import "@/styles/document.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const tajawal = Tajawal({

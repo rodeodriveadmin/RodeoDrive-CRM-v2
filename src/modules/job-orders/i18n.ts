@@ -77,6 +77,9 @@ export const jobOrdersEn = {
     "Card numbers must never be entered here — record only the gateway/terminal reference",
   "jobs.overpayWarning": "Amount is larger than the remaining balance",
 
+  "jobs.invoiceDocTitle": "Tax Invoice",
+  "jobs.invoice": "Invoice",
+
   "jobs.timeline": "Timeline",
   "jobs.step.created": "Order created",
   "jobs.step.status": "Status changed",
@@ -87,6 +90,16 @@ export const jobOrdersEn = {
   "jobs.step.payment_deleted": "Payment deleted",
   "jobs.step.billing": "Billing updated",
   "jobs.step.details": "Details updated",
+  "jobs.step.inspection_started": "Inspection started",
+  "jobs.step.inspection_completed": "Inspection completed",
+  "jobs.step.qc_passed": "Quality check passed",
+  "jobs.step.qc_failed": "Quality check failed",
+  "jobs.step.qc_reset": "Quality check reset",
+  "jobs.step.service_started": "Service started",
+  "jobs.step.service_finished": "Service finished",
+  "jobs.step.permit_required": "Exit permit requested",
+  "jobs.step.permit_approved": "Exit permit approved",
+  "jobs.step.permit_rejected": "Exit permit rejected",
 } as const;
 
 export const jobOrdersAr: Record<keyof typeof jobOrdersEn, string> = {
@@ -165,6 +178,9 @@ export const jobOrdersAr: Record<keyof typeof jobOrdersEn, string> = {
   "jobs.cardDataBlocked": "يمنع إدخال أرقام البطاقات هنا — سجّل مرجع الجهاز/البوابة فقط",
   "jobs.overpayWarning": "المبلغ أكبر من المتبقي",
 
+  "jobs.invoiceDocTitle": "فاتورة ضريبية",
+  "jobs.invoice": "الفاتورة",
+
   "jobs.timeline": "الخط الزمني",
   "jobs.step.created": "تم إنشاء الأمر",
   "jobs.step.status": "تغيّرت الحالة",
@@ -175,4 +191,14 @@ export const jobOrdersAr: Record<keyof typeof jobOrdersEn, string> = {
   "jobs.step.payment_deleted": "حُذفت دفعة",
   "jobs.step.billing": "عُدّلت الفاتورة",
   "jobs.step.details": "عُدّلت التفاصيل",
+  "jobs.step.inspection_started": "بدأ الفحص",
+  "jobs.step.inspection_completed": "اكتمل الفحص",
+  "jobs.step.qc_passed": "اجتاز فحص الجودة",
+  "jobs.step.qc_failed": "أخفق في فحص الجودة",
+  "jobs.step.qc_reset": "أُعيد فحص الجودة",
+  "jobs.step.service_started": "بدأت الخدمة",
+  "jobs.step.service_finished": "انتهت الخدمة",
+  "jobs.step.permit_required": "طُلب تصريح خروج",
+  "jobs.step.permit_approved": "اعتُمد تصريح الخروج",
+  "jobs.step.permit_rejected": "رُفض تصريح الخروج",
 };

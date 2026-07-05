@@ -49,6 +49,18 @@ export const jobOrders = pgTable(
     notes: text("notes"),
     internalNotes: text("internal_notes"),
 
+    // quality check (order level)
+    qualityCheckStatus: text("quality_check_status").notNull().default("PENDING"), // PENDING|PASSED|FAILED
+    qualityCheckNotes: text("quality_check_notes"),
+    qualityCheckedBy: text("quality_checked_by"),
+    qualityCheckedAt: timestamp("quality_checked_at"),
+
+    // exit permit
+    exitPermitStatus: text("exit_permit_status").notNull().default("NOT_REQUIRED"), // NOT_REQUIRED|PENDING|APPROVED|REJECTED
+    exitPermitNote: text("exit_permit_note"),
+    exitPermitBy: text("exit_permit_by"),
+    exitPermitAt: timestamp("exit_permit_at"),
+
     createdBy: text("created_by"),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
@@ -77,6 +89,8 @@ export const jobOrderServices = pgTable(
     isCompleted: boolean("is_completed").notNull().default(false),
     technician: text("technician"),
     notes: text("notes"),
+    startedAt: timestamp("started_at"),
+    endedAt: timestamp("ended_at"),
     createdAt: timestamp("created_at").defaultNow().notNull(),
   },
   (t) => [index("job_order_services_order_idx").on(t.jobOrderId)]

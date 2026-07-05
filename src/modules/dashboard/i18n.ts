@@ -11,7 +11,7 @@ export const dashboardEn = {
   "dashboard.services": "Services",
   "dashboard.jobOrders": "Job Orders",
   "dashboard.phaseNote":
-    "Phases 1–3 are live: authentication, RBAC, administration, customers, vehicles, the service catalog, job orders and payments. Next: quotations, vouchers and inspections.",
+    "Phases 1–4 are live: administration & RBAC, customers, vehicles, service catalog, job orders, payments, quotations, vouchers, invoices, inspections, quality check, service execution and exit permits. Next: inventory, reports and dashboard analytics.",
 } as const;
 
 export const dashboardAr: Record<keyof typeof dashboardEn, string> = {
@@ -25,5 +25,5 @@ export const dashboardAr: Record<keyof typeof dashboardEn, string> = {
   "dashboard.services": "الخدمات",
   "dashboard.jobOrders": "أوامر العمل",
   "dashboard.phaseNote":
-    "المراحل من الأولى إلى الثالثة جاهزة: تسجيل الدخول، الصلاحيات، الإدارة، العملاء، المركبات، كتالوج الخدمات، أوامر العمل والمدفوعات. التالي: عروض الأسعار والقسائم والفحوصات.",
+    "المراحل من الأولى إلى الرابعة جاهزة: الإدارة والصلاحيات، العملاء، المركبات، كتالوج الخدمات، أوامر العمل، المدفوعات، عروض الأسعار، القسائم، الفواتير، الفحوصات، فحص الجودة، تنفيذ الخدمات وتصاريح الخروج. التالي: المخزون والتقارير وتحليلات لوحة التحكم.",
 };

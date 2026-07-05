@@ -103,6 +103,13 @@
   accent-color: var(--color-accent);
 }
 
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
 .form-error {
   font-size: 13px;
   color: var(--color-danger);
@@ -315,6 +322,16 @@
   color: var(--color-text-faint);
 }
 
+/* ---------- Row link (table cell → detail page) ---------- */
+.row-link {
+  font-weight: 600;
+  color: var(--color-text);
+}
+.row-link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
 /* ---------- Back link (detail pages) ---------- */
 .back-link {
   display: inline-flex;
@@ -331,6 +348,38 @@
 /* ---------- Card toolbar search ---------- */
 .toolbar-search {
   width: 200px;
+}
+
+/* ---------- Document lines editor ---------- */
+.doc-lines__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block-end: 12px;
+}
+.doc-lines__table th {
+  text-align: start;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-faint);
+  padding: 4px 6px;
+}
+.doc-lines__table td {
+  padding: 4px 6px;
+}
+.doc-lines__table td:nth-child(2),
+.doc-lines__table td:nth-child(3) {
+  width: 90px;
+}
+.doc-lines__adders {
+  display: flex;
+  gap: 8px;
+}
+.doc-lines__adders .select {
+  flex: 1.5;
+}
+.doc-lines__adders .input {
+  flex: 1;
 }
 
 /* ---------- Icon tones ---------- */

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Plus, Trash2, Pencil } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, Pencil, Printer } from "lucide-react";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 import type { DictKey } from "@/lib/i18n/dictionaries";
 import {
@@ -274,26 +274,34 @@ export function JobOrderDetailView({
             </Badge>
           )}
         </div>
-        {canEdit && (
-          <div className="job-detail__head-actions">
-            <Select
-              value={order.status}
-              onChange={(e) => setJobOrderStatus(order.id, e.target.value)}
-              className="jobs__filter"
-              aria-label={t("jobs.status")}
-            >
-              {JOB_STATUSES.map((s) => (
-                <option key={s} value={s}>
-                  {t(`jobs.status.${s}` as DictKey)}
-                </option>
-              ))}
-            </Select>
-            <Button variant="secondary" onClick={() => setDetailsOpen(true)}>
-              <Pencil size={15} aria-hidden />
-              {t("common.edit")}
+        <div className="job-detail__head-actions">
+          <Link href={`/job-orders/${order.id}/invoice`}>
+            <Button variant="secondary">
+              <Printer size={15} aria-hidden />
+              {t("jobs.invoice")}
             </Button>
-          </div>
-        )}
+          </Link>
+          {canEdit && (
+            <>
+              <Select
+                value={order.status}
+                onChange={(e) => setJobOrderStatus(order.id, e.target.value)}
+                className="jobs__filter"
+                aria-label={t("jobs.status")}
+              >
+                {JOB_STATUSES.map((s) => (
+                  <option key={s} value={s}>
+                    {t(`jobs.status.${s}` as DictKey)}
+                  </option>
+                ))}
+              </Select>
+              <Button variant="secondary" onClick={() => setDetailsOpen(true)}>
+                <Pencil size={15} aria-hidden />
+                {t("common.edit")}
+              </Button>
+            </>
+          )}
+        </div>
       </div>
 
       <div className="job-detail__grid">
