@@ -1,0 +1,79 @@
+/* ============================================================
+   DAILY-REPORT CLUSTER
+   ============================================================ */
+
+.daily__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-block-end: 16px;
+}
+
+.daily__title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.daily__date-input {
+  width: 170px;
+}
+
+.daily__kpis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-block-end: 16px;
+}
+
+@media (min-width: 900px) {
+  .daily__kpis {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.daily__kpi {
+  padding: 16px;
+  text-align: center;
+}
+
+.daily__kpi-value {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.daily__kpi-label {
+  font-size: 12px;
+  color: var(--color-text-faint);
+}
+
+.daily__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 1000px) {
+  .daily__grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.daily__methods {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 20px;
+}
+
+.daily__method-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.daily__mt {
+  margin-block-start: 16px;
+}

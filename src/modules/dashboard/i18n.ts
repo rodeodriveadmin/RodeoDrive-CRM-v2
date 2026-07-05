@@ -10,8 +10,12 @@ export const dashboardEn = {
   "dashboard.vehicles": "Vehicles",
   "dashboard.services": "Services",
   "dashboard.jobOrders": "Job Orders",
-  "dashboard.phaseNote":
-    "Phases 1–4 are live: administration & RBAC, customers, vehicles, service catalog, job orders, payments, quotations, vouchers, invoices, inspections, quality check, service execution and exit permits. Next: inventory, reports and dashboard analytics.",
+  "dashboard.todayCollected": "Collected today",
+  "dashboard.monthCollected": "Collected this month",
+  "dashboard.outstanding": "Outstanding balance",
+  "dashboard.openOrders": "Orders in the shop",
+  "dashboard.chartTitle": "Collected — last 14 days",
+  "dashboard.byStatus": "Orders by status",
 } as const;
 
 export const dashboardAr: Record<keyof typeof dashboardEn, string> = {
@@ -24,6 +28,10 @@ export const dashboardAr: Record<keyof typeof dashboardEn, string> = {
   "dashboard.vehicles": "المركبات",
   "dashboard.services": "الخدمات",
   "dashboard.jobOrders": "أوامر العمل",
-  "dashboard.phaseNote":
-    "المراحل من الأولى إلى الرابعة جاهزة: الإدارة والصلاحيات، العملاء، المركبات، كتالوج الخدمات، أوامر العمل، المدفوعات، عروض الأسعار، القسائم، الفواتير، الفحوصات، فحص الجودة، تنفيذ الخدمات وتصاريح الخروج. التالي: المخزون والتقارير وتحليلات لوحة التحكم.",
+  "dashboard.todayCollected": "محصّل اليوم",
+  "dashboard.monthCollected": "محصّل هذا الشهر",
+  "dashboard.outstanding": "المبالغ المستحقة",
+  "dashboard.openOrders": "أوامر داخل الورشة",
+  "dashboard.chartTitle": "المحصّل — آخر ١٤ يوماً",
+  "dashboard.byStatus": "الأوامر حسب الحالة",
 };

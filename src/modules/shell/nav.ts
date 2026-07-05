@@ -64,16 +64,16 @@ export const NAV_GROUPS: NavGroup[] = [
       { labelKey: "nav.payments", href: "/payments", icon: CreditCard, policy: "PAYMENTS", ready: true },
       { labelKey: "nav.quotations", href: "/quotations", icon: FileText, policy: "QUOTATIONS", ready: true },
       { labelKey: "nav.vouchers", href: "/vouchers", icon: Gift, policy: "VOUCHERS", ready: true },
-      { labelKey: "nav.dailyReport", href: "/daily-report", icon: CalendarDays, policy: "DAILY_REPORT", ready: false },
+      { labelKey: "nav.dailyReport", href: "/daily-report", icon: CalendarDays, policy: "DAILY_REPORT", ready: true },
     ],
   },
   {
     labelKey: "nav.group.catalog",
     items: [
       { labelKey: "nav.serviceCatalog", href: "/service-catalog", icon: BookOpen, policy: "SERVICE_CATALOG", ready: true },
-      { labelKey: "nav.inventory", href: "/inventory", icon: Boxes, policy: "INVENTORY", ready: false },
-      { labelKey: "nav.employees", href: "/employees", icon: IdCard, policy: "EMPLOYEES", ready: false },
-      { labelKey: "nav.technicians", href: "/technicians", icon: HardHat, policy: "TECHNICIANS", ready: false },
+      { labelKey: "nav.inventory", href: "/inventory", icon: Boxes, policy: "INVENTORY", ready: true },
+      { labelKey: "nav.employees", href: "/employees", icon: IdCard, policy: "EMPLOYEES", ready: true },
+      { labelKey: "nav.technicians", href: "/technicians", icon: HardHat, policy: "TECHNICIANS", ready: true },
     ],
   },
   {

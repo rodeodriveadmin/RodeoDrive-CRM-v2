@@ -7,16 +7,49 @@
   font-weight: 600;
 }
 
-.dashboard__stats {
+.dashboard__kpis {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   margin-block-start: 24px;
 }
 
+@media (min-width: 900px) {
+  .dashboard__kpis {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.dashboard__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-block-start: 16px;
+}
+
+@media (min-width: 1000px) {
+  .dashboard__row {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+  }
+}
+
+.dashboard__stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-block-start: 16px;
+}
+
 @media (min-width: 640px) {
   .dashboard__stats {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .dashboard__stats {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -32,42 +65,70 @@
   justify-content: center;
   width: 44px;
   height: 44px;
+  flex-shrink: 0;
   border-radius: 12px;
   background: var(--color-accent-soft);
   color: var(--color-accent);
 }
 
-.stat-card__value {
-  font-size: 24px;
-  font-weight: 600;
-}
-
-.stat-card__label {
-  font-size: 14px;
-  color: var(--color-text-faint);
-}
-
-.dashboard__note {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  margin-block-start: 24px;
-}
-
-.dashboard__note-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  border-radius: 12px;
+.stat-card__icon--success {
   background: var(--color-success-bg);
   color: var(--color-success);
 }
 
-.dashboard__note-text {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--color-text-muted);
+.stat-card__icon--danger {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.stat-card__value {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.stat-card__label {
+  font-size: 13px;
+  color: var(--color-text-faint);
+}
+
+/* ---- chart ---- */
+.dashboard__chart-wrap {
+  padding: 16px 20px;
+}
+
+.dashboard__chart {
+  width: 100%;
+  height: auto;
+}
+
+.dashboard__bar {
+  fill: var(--color-accent);
+}
+
+.dashboard__bar--empty {
+  fill: var(--color-border-soft);
+}
+
+.dashboard__bar-value {
+  font-size: 10px;
+  fill: var(--color-text-muted);
+}
+
+.dashboard__bar-label {
+  font-size: 10px;
+  fill: var(--color-text-faint);
+}
+
+/* ---- status breakdown ---- */
+.dashboard__statuses {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 20px;
+}
+
+.dashboard__status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

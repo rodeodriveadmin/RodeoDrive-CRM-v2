@@ -1,0 +1,81 @@
+/* ============================================================
+   INVENTORY CLUSTER — tabs reuse the shared .tabs pattern.
+   ============================================================ */
+
+.inv__tabs {
+  display: flex;
+  gap: 4px;
+  margin-block-end: 16px;
+  border-block-end: 1px solid var(--color-border-soft);
+}
+
+.inv__tab {
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  border-block-end: 2px solid transparent;
+  margin-block-end: -1px;
+}
+.inv__tab:hover {
+  color: var(--color-text);
+}
+.inv__tab.is-active {
+  color: var(--color-accent);
+  border-block-end-color: var(--color-accent);
+}
+
+.inv__cat-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  border-block-end: 1px solid var(--color-border-soft);
+}
+.inv__cat-row:last-child {
+  border-block-end: 0;
+}
+
+.inv__cat-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.inv__subs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-block-start: 6px;
+}
+
+.inv__sub-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: var(--color-surface-hover);
+  color: var(--color-text-muted);
+}
+
+.inv__sub-remove {
+  color: var(--color-text-faint);
+  line-height: 1;
+}
+.inv__sub-remove:hover {
+  color: var(--color-danger);
+}
+
+.inv__sub-add {
+  display: flex;
+  gap: 6px;
+}
+.inv__sub-add .input {
+  width: 160px;
+  padding: 4px 10px;
+  font-size: 13px;
+}
