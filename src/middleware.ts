@@ -9,6 +9,7 @@ export function middleware(request: NextRequest) {
   const isPublic =
     pathname === "/login" ||
     pathname.startsWith("/api/auth") ||
+    pathname.startsWith("/themes/") || // organization theme CSS + brand assets
     pathname === "/manifest.webmanifest" ||
     pathname === "/icon.svg";
 
@@ -24,5 +25,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|icon.svg|manifest.webmanifest|brand).*)"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|icon.svg|manifest.webmanifest|themes).*)"],
 };

@@ -14,7 +14,7 @@
 
 :root {
   /* ---------- Brand identity ---------- */
-  --org-logo: url("/icon.svg");              /* square logo (sidebar, login) */
+  --org-logo: url("/themes/assets/logo.jpg"); /* square logo (sidebar, login) */
   --org-login-bg: none;                      /* e.g. url("/themes/assets/my-bg.jpg") */
   --org-login-bg-color: #0b0d12;             /* used when no photo is set */
 

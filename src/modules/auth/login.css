@@ -1,62 +1,132 @@
 /* ============================================================
    AUTH CLUSTER — login screen.
-   Background photo + logo are organization-theme driven:
-   --org-login-bg / --org-login-bg-color / --org-logo
+   Branding comes from the organization theme:
+   --org-logo / --org-login-bg / --org-login-bg-color
    ============================================================ */
 
 .login {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100dvh;
-  padding: 16px;
+  padding: 24px;
   background-color: var(--org-login-bg-color);
   background-image: var(--org-login-bg);
   background-size: cover;
   background-position: center;
+  overflow: hidden;
+}
+
+/* layered brand glows over the background */
+.login::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(640px 420px at 18% 12%, rgb(198 154 63 / 0.16), transparent 62%),
+    radial-gradient(520px 360px at 85% 82%, rgb(198 154 63 / 0.10), transparent 60%),
+    radial-gradient(900px 540px at 50% 115%, rgb(255 255 255 / 0.05), transparent 65%);
+  pointer-events: none;
+}
+
+/* faint horizon line behind the card */
+.login::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(198 154 63 / 0.25), transparent);
+  pointer-events: none;
 }
 
 .login__box {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 384px;
+  max-width: 404px;
+  animation: login-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes login-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login__box {
+    animation: none;
+  }
 }
 
 .login__head {
-  margin-block-end: 32px;
+  margin-block-end: 28px;
   text-align: center;
 }
 
 .login__logo {
-  width: 56px;
-  height: 56px;
+  width: 104px;
+  height: 104px;
   margin-inline: auto;
-  margin-block-end: 16px;
-  border-radius: 16px;
-  background-color: var(--color-accent-soft);
-  box-shadow: inset 0 0 0 1px var(--color-accent);
+  margin-block-end: 20px;
+  border-radius: 50%;
+  background-color: #000;
+  background-size: cover;
+  box-shadow:
+    0 0 0 1px rgb(198 154 63 / 0.65),
+    0 0 0 7px rgb(198 154 63 / 0.10),
+    0 0 42px 2px rgb(198 154 63 / 0.18),
+    0 24px 48px -16px rgb(0 0 0 / 0.85);
 }
 
 .login__title {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 600;
+  letter-spacing: 0.02em;
   color: #fff;
 }
 
 .login__subtitle {
-  margin-block-start: 4px;
+  margin-block-start: 6px;
   font-size: 14px;
-  color: rgb(255 255 255 / 0.65);
+  color: rgb(255 255 255 / 0.6);
 }
 
 .login__form {
-  padding: 24px;
+  padding: 28px;
   background: var(--color-surface);
-  border-radius: 16px;
-  box-shadow: var(--shadow-pop);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.65),
+    0 1px 2px rgb(0 0 0 / 0.4),
+    0 28px 64px -20px rgb(0 0 0 / 0.6);
 }
 
 .login__field {
   margin-block-end: 16px;
+}
+
+.login__form .input {
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+
+.login__form .btn {
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  background: linear-gradient(180deg, var(--color-primary-hover), var(--color-primary));
+  box-shadow: 0 10px 24px -10px rgb(0 0 0 / 0.55);
+}
+.login__form .btn:hover:not(:disabled) {
+  background: var(--color-primary-hover);
 }
 
 .login__error {
@@ -68,10 +138,15 @@
 .login__lang {
   display: block;
   margin-inline: auto;
-  margin-block-start: 24px;
-  font-size: 14px;
-  color: rgb(255 255 255 / 0.6);
+  margin-block-start: 26px;
+  padding: 7px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: rgb(255 255 255 / 0.65);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.16);
+  transition: color 0.15s ease, box-shadow 0.15s ease;
 }
 .login__lang:hover {
   color: #fff;
+  box-shadow: inset 0 0 0 1px rgb(198 154 63 / 0.6);
 }
