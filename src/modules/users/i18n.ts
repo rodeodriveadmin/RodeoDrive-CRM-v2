@@ -16,6 +16,9 @@ export const usersEn = {
   "users.none": "No users yet",
   "users.root": "Root",
   "users.emailExists": "A user with this email already exists",
+  "users.blocked": "Blocked",
+  "users.unblock": "Unblock",
+  "users.blockedHint": "Blocked after 3 failed sign-in attempts",
 } as const;
 
 export const usersAr: Record<keyof typeof usersEn, string> = {
@@ -34,4 +37,7 @@ export const usersAr: Record<keyof typeof usersEn, string> = {
   "users.none": "لا يوجد مستخدمون بعد",
   "users.root": "مدير أعلى",
   "users.emailExists": "يوجد مستخدم بهذا البريد مسبقاً",
+  "users.blocked": "محظور",
+  "users.unblock": "إلغاء الحظر",
+  "users.blockedHint": "حُظر بعد ٣ محاولات دخول فاشلة",
 };

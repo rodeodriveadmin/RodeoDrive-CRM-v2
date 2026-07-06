@@ -1,8 +1,26 @@
 import { betterAuth } from "better-auth";
-import { APIError } from "better-auth/api";
+import { APIError, createAuthMiddleware } from "better-auth/api";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { eq } from "drizzle-orm";
 import { db, schema } from "@/db";
+import { crmSender, getEmailProvider } from "@/lib/email";
+import { PASSWORD_MIN_LENGTH } from "@/lib/password-policy";
+
+export const MAX_LOGIN_ATTEMPTS = 3;
+
+async function profileByEmail(email: string) {
+  const [row] = await db
+    .select({
+      userId: schema.user.id,
+      isBlocked: schema.userProfiles.isBlocked,
+      failedLoginAttempts: schema.userProfiles.failedLoginAttempts,
+      isRoot: schema.userProfiles.isRoot,
+    })
+    .from(schema.user)
+    .innerJoin(schema.userProfiles, eq(schema.userProfiles.userId, schema.user.id))
+    .where(eq(schema.user.email, email.trim().toLowerCase()));
+  return row ?? null;
+}
 
 export const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL,
@@ -26,7 +44,21 @@ export const auth = betterAuth({
     enabled: true,
     // No public self-registration — accounts are created by admins (invite flow).
     disableSignUp: true,
-    minPasswordLength: 6,
+    minPasswordLength: PASSWORD_MIN_LENGTH,
+    resetPasswordTokenExpiresIn: 60 * 60, // 1 hour
+    sendResetPassword: async ({ user, url }) => {
+      await getEmailProvider().send(
+        user.email,
+        "Reset your Rodeo Drive CRM password",
+        `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#14161d">
+          <h2 style="margin:0 0 8px">Password reset</h2>
+          <p>We received a request to reset the password for <b>${user.email}</b>.</p>
+          <p><a href="${url}" style="display:inline-block;padding:10px 18px;background:#14161d;color:#fff;border-radius:8px;text-decoration:none">Choose a new password</a></p>
+          <p style="color:#5f6b88;font-size:12px">The link expires in 1 hour. If you didn't request this, you can safely ignore this email.</p>
+        </div>`,
+        { from: crmSender() }
+      );
+    },
   },
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
@@ -39,18 +71,90 @@ export const auth = betterAuth({
       ipAddressHeaders: ["x-forwarded-for"],
     },
   },
+  hooks: {
+    // blocked accounts cannot even attempt to sign in
+    before: createAuthMiddleware(async (ctx) => {
+      if (ctx.path !== "/sign-in/email") return;
+      const email = typeof ctx.body?.email === "string" ? ctx.body.email : "";
+      if (!email) return;
+      const profile = await profileByEmail(email);
+      if (profile?.isBlocked) {
+        throw new APIError("FORBIDDEN", { message: "ACCOUNT_BLOCKED" });
+      }
+    }),
+    // count wrong-password attempts on registered emails; 3 strikes → blocked
+    after: createAuthMiddleware(async (ctx) => {
+      if (ctx.path !== "/sign-in/email") return;
+      const email = typeof ctx.body?.email === "string" ? ctx.body.email : "";
+      if (!email) return;
+
+      if (ctx.context.newSession) {
+        // successful sign-in resets the counter
+        const profile = await profileByEmail(email);
+        if (profile && profile.failedLoginAttempts > 0) {
+          await db
+            .update(schema.userProfiles)
+            .set({ failedLoginAttempts: 0, updatedAt: new Date() })
+            .where(eq(schema.userProfiles.userId, profile.userId));
+        }
+        return;
+      }
+
+      const returned = ctx.context.returned;
+      if (!(returned instanceof APIError)) return;
+      // blocked/disabled rejections are not wrong-password attempts
+      if (
+        returned.body?.message === "ACCOUNT_BLOCKED" ||
+        returned.body?.message === "ACCOUNT_DISABLED"
+      ) {
+        return;
+      }
+
+      const profile = await profileByEmail(email);
+      if (!profile) return; // unregistered email — nothing to count
+      // Root can never be blocked (nobody could unblock it); Better Auth's
+      // per-IP rate limiting still throttles brute force on that account.
+      if (profile.isRoot) return;
+
+      const attempts = profile.failedLoginAttempts + 1;
+      const blocked = attempts >= MAX_LOGIN_ATTEMPTS;
+      await db
+        .update(schema.userProfiles)
+        .set({
+          failedLoginAttempts: attempts,
+          isBlocked: blocked,
+          updatedAt: new Date(),
+        })
+        .where(eq(schema.userProfiles.userId, profile.userId));
+
+      if (blocked) {
+        throw new APIError("FORBIDDEN", { message: "ACCOUNT_BLOCKED" });
+      }
+      throw new APIError("UNAUTHORIZED", {
+        message: `INVALID_CREDENTIALS:${MAX_LOGIN_ATTEMPTS - attempts}`,
+      });
+    }),
+  },
   databaseHooks: {
     session: {
       create: {
-        // Deactivated users cannot sign in.
+        // Deactivated or blocked users cannot sign in.
         before: async (session) => {
           const [profile] = await db
-            .select({ isActive: schema.userProfiles.isActive })
+            .select({
+              isActive: schema.userProfiles.isActive,
+              isBlocked: schema.userProfiles.isBlocked,
+            })
             .from(schema.userProfiles)
             .where(eq(schema.userProfiles.userId, session.userId));
           if (profile && !profile.isActive) {
             throw new APIError("FORBIDDEN", {
               message: "ACCOUNT_DISABLED",
+            });
+          }
+          if (profile?.isBlocked) {
+            throw new APIError("FORBIDDEN", {
+              message: "ACCOUNT_BLOCKED",
             });
           }
           return { data: session };

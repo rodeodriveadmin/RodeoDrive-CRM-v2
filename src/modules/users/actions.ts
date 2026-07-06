@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { eq } from "drizzle-orm";
 import { db, schema } from "@/db";
 import { createCredentialUser, setUserPassword } from "@/lib/auth";
+import { isPasswordValid } from "@/lib/password-policy";
 import { requirePolicy } from "@/lib/rbac/server";
 import { logActivity } from "@/lib/activity";
 
@@ -22,9 +23,10 @@ export async function inviteUser(input: InviteUserInput): Promise<ActionResult> 
   const actor = await requirePolicy("USERS_ADMIN", "create");
 
   const email = input.email.trim().toLowerCase();
-  if (!email || !input.fullName.trim() || input.password.length < 6) {
+  if (!email || !input.fullName.trim()) {
     return { error: "INVALID_INPUT" };
   }
+  if (!isPasswordValid(input.password)) return { error: "WEAK_PASSWORD" };
 
   const [existing] = await db
     .select({ id: schema.user.id })
@@ -135,7 +137,7 @@ export async function updateUserProfile(userId: string, input: UpdateUserInput):
 
 export async function resetUserPassword(userId: string, password: string): Promise<ActionResult> {
   const actor = await requirePolicy("USERS_ADMIN", "update");
-  if (password.length < 6) return { error: "INVALID_INPUT" };
+  if (!isPasswordValid(password)) return { error: "WEAK_PASSWORD" };
 
   await setUserPassword(userId, password);
   await db.delete(schema.session).where(eq(schema.session.userId, userId));
@@ -148,5 +150,26 @@ export async function resetUserPassword(userId: string, password: string): Promi
     actorEmail: actor.email,
     actorName: actor.name,
   });
+  return { ok: true };
+}
+
+/** Clears a brute-force block (3 wrong passwords). Admin-only. */
+export async function unblockUser(userId: string): Promise<ActionResult> {
+  const actor = await requirePolicy("USERS_ADMIN", "update");
+
+  await db
+    .update(schema.userProfiles)
+    .set({ isBlocked: false, failedLoginAttempts: 0, updatedAt: new Date() })
+    .where(eq(schema.userProfiles.userId, userId));
+
+  await logActivity({
+    entityType: "user",
+    entityId: userId,
+    action: "update",
+    message: "User unblocked after failed sign-in attempts",
+    actorEmail: actor.email,
+    actorName: actor.name,
+  });
+  revalidatePath("/admin/users");
   return { ok: true };
 }

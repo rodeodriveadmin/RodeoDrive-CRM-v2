@@ -3,7 +3,10 @@ import "server-only";
 // Email provider abstraction (same pattern as src/lib/sms.ts).
 // - RESEND_API_KEY set  → real sends through the Resend HTTPS API (no SDK).
 // - not set             → null provider, results recorded as SIMULATED.
-// EMAIL_FROM sets the sender, e.g. "Rodeo Drive CRM <crm@rodeodrive.work>".
+// Senders:
+// - EMAIL_FROM      default sender (reports), e.g. "Rodeo Drive CRM <reports@rodeodrive.com.qa>"
+// - EMAIL_FROM_CRM  transactional sender (password reset, invitations),
+//                   e.g. "Rodeo Drive CRM <crm@rodeodrive.com.qa>" — used via options.from
 
 export interface EmailSendResult {
   status: "SIMULATED" | "SENT" | "FAILED";
@@ -11,21 +14,35 @@ export interface EmailSendResult {
   error?: string;
 }
 
+export interface EmailSendOptions {
+  from?: string; // overrides EMAIL_FROM for this send
+}
+
 export interface EmailProvider {
   name: string;
-  send(to: string, subject: string, html: string): Promise<EmailSendResult>;
+  send(to: string, subject: string, html: string, options?: EmailSendOptions): Promise<EmailSendResult>;
+}
+
+/** Sender for auth/transactional mail (reset links, invitations). */
+export function crmSender(): string | undefined {
+  return process.env.EMAIL_FROM_CRM || process.env.EMAIL_FROM;
 }
 
 const nullProvider: EmailProvider = {
   name: "none",
-  async send() {
+  async send(to, subject, html, options) {
+    // dev visibility: surface any action link so flows (e.g. password
+    // reset) can be exercised without a configured provider
+    const link = html.match(/href="([^"]+)"/)?.[1];
+    const from = options?.from || process.env.EMAIL_FROM || "(default)";
+    console.log(`[email SIMULATED] from=${from} to=${to} subject="${subject}"${link ? `\n[email SIMULATED] link: ${link}` : ""}`);
     return { status: "SIMULATED", providerName: "none" };
   },
 };
 
 const resendProvider: EmailProvider = {
   name: "resend",
-  async send(to, subject, html) {
+  async send(to, subject, html, options) {
     try {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -34,7 +51,7 @@ const resendProvider: EmailProvider = {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: process.env.EMAIL_FROM || "onboarding@resend.dev",
+          from: options?.from || process.env.EMAIL_FROM || "onboarding@resend.dev",
           to: [to],
           subject,
           html,

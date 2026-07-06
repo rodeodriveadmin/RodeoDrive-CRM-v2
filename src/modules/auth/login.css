@@ -18,7 +18,8 @@
   overflow: hidden;
 }
 
-/* layered brand glows over the background */
+/* dark scrim + layered brand glows over the background photo,
+   keeping white text readable on bright photos */
 .login::before {
   content: "";
   position: absolute;
@@ -26,7 +27,8 @@
   background:
     radial-gradient(640px 420px at 18% 12%, rgb(198 154 63 / 0.16), transparent 62%),
     radial-gradient(520px 360px at 85% 82%, rgb(198 154 63 / 0.10), transparent 60%),
-    radial-gradient(900px 540px at 50% 115%, rgb(255 255 255 / 0.05), transparent 65%);
+    radial-gradient(900px 540px at 50% 115%, rgb(255 255 255 / 0.05), transparent 65%),
+    linear-gradient(180deg, rgb(8 10 14 / 0.5), rgb(8 10 14 / 0.62));
   pointer-events: none;
 }
 
@@ -129,10 +131,61 @@
   background: var(--color-primary-hover);
 }
 
+/* password field with the show/hide eye */
+.login__password {
+  position: relative;
+}
+.login__password .input {
+  padding-inline-end: 42px;
+}
+.login__eye {
+  position: absolute;
+  inset-inline-end: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--color-text-faint);
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.login__eye:hover {
+  color: var(--color-text);
+  background: var(--color-surface-hover);
+}
+
 .login__error {
   margin-block-end: 16px;
   font-size: 13px;
   color: var(--color-danger);
+}
+
+.login__success {
+  margin-block-end: 16px;
+  font-size: 13px;
+  color: var(--color-success);
+}
+
+.login__forgot {
+  display: block;
+  margin-block-start: 14px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.login__forgot:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.login__hint {
+  margin-block-start: 6px;
+  font-size: 12px;
+  color: var(--color-text-faint);
 }
 
 .login__lang {

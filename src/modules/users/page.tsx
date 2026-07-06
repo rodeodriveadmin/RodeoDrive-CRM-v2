@@ -18,6 +18,7 @@ export default async function UsersAdminPage() {
       roleId: schema.userProfiles.roleId,
       isActive: schema.userProfiles.isActive,
       isRoot: schema.userProfiles.isRoot,
+      isBlocked: schema.userProfiles.isBlocked,
     })
     .from(schema.user)
     .leftJoin(schema.userProfiles, eq(schema.userProfiles.userId, schema.user.id))
@@ -32,6 +33,7 @@ export default async function UsersAdminPage() {
         ...r,
         isActive: r.isActive ?? true,
         isRoot: r.isRoot ?? false,
+        isBlocked: r.isBlocked ?? false,
         createdAt: r.createdAt.toISOString(),
       }))}
       departments={departments.map((d) => ({ id: d.id, name: d.name }))}

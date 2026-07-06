@@ -74,11 +74,17 @@ export function CardHeader({ title, actions }: { title: ReactNode; actions?: Rea
 export function Badge({
   children,
   tone = "neutral",
+  title,
 }: {
   children: ReactNode;
   tone?: "neutral" | "success" | "danger" | "warning" | "brand";
+  title?: string;
 }) {
-  return <span className={cx("badge", `badge--${tone}`)}>{children}</span>;
+  return (
+    <span className={cx("badge", `badge--${tone}`)} title={title}>
+      {children}
+    </span>
+  );
 }
 
 /* ----------------------------- Table ----------------------------- */

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { UserPlus, KeyRound, Pencil, Power } from "lucide-react";
+import { UserPlus, KeyRound, Pencil, Power, ShieldCheck } from "lucide-react";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 import {
   Badge,
@@ -17,7 +17,7 @@ import {
   Td,
   Th,
 } from "@/components/ui";
-import { inviteUser, resetUserPassword, setUserActive, updateUserProfile } from "./actions";
+import { inviteUser, resetUserPassword, setUserActive, unblockUser, updateUserProfile } from "./actions";
 import "./users.css";
 
 interface Row {
@@ -31,6 +31,7 @@ interface Row {
   roleId: string | null;
   isActive: boolean;
   isRoot: boolean;
+  isBlocked: boolean;
 }
 interface Option {
   id: string;
@@ -82,7 +83,13 @@ export function UsersView({
     });
     setBusy(false);
     if (res.error) {
-      setError(res.error === "EMAIL_EXISTS" ? t("users.emailExists") : t("common.error"));
+      setError(
+        res.error === "EMAIL_EXISTS"
+          ? t("users.emailExists")
+          : res.error === "WEAK_PASSWORD"
+            ? t("common.weakPassword")
+            : t("common.error")
+      );
       return;
     }
     setInviteOpen(false);
@@ -114,7 +121,7 @@ export function UsersView({
     const res = await resetUserPassword(pwUser.userId, String(formData.get("password") ?? ""));
     setBusy(false);
     if (res.error) {
-      setError(t("common.error"));
+      setError(res.error === "WEAK_PASSWORD" ? t("common.weakPassword") : t("common.error"));
       return;
     }
     setPwUser(null);
@@ -166,12 +173,27 @@ export function UsersView({
                     {u.isRoot ? <Badge tone="brand">{t("users.root")}</Badge> : roleName(u.roleId)}
                   </Td>
                   <Td>
-                    <Badge tone={u.isActive ? "success" : "danger"}>
-                      {u.isActive ? t("common.active") : t("common.inactive")}
-                    </Badge>
+                    {u.isBlocked ? (
+                      <Badge tone="danger" title={t("users.blockedHint")}>
+                        {t("users.blocked")}
+                      </Badge>
+                    ) : (
+                      <Badge tone={u.isActive ? "success" : "danger"}>
+                        {u.isActive ? t("common.active") : t("common.inactive")}
+                      </Badge>
+                    )}
                   </Td>
                   <Td>
                     <div className="row-actions">
+                      {u.isBlocked && (
+                        <Button
+                          variant="ghost"
+                          title={t("users.unblock")}
+                          onClick={() => unblockUser(u.userId)}
+                        >
+                          <ShieldCheck size={15} aria-hidden className="icon-success" />
+                        </Button>
+                      )}
                       <Button variant="ghost" title={t("common.edit")} onClick={() => { setError(null); setEditUser(u); }}>
                         <Pencil size={15} aria-hidden />
                       </Button>
@@ -202,7 +224,14 @@ export function UsersView({
 
       {/* Invite modal */}
       <Modal open={inviteOpen} onClose={() => setInviteOpen(false)} title={t("users.invite")}>
-        <form action={submitInvite} className="form-stack">
+        {/* onSubmit (not action=) so a failed submit keeps the typed values */}
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            submitInvite(new FormData(e.currentTarget));
+          }}
+          className="form-stack"
+        >
           <div>
             <Label htmlFor="i-name">{t("users.fullName")}</Label>
             <Input id="i-name" name="fullName" required />
@@ -243,7 +272,8 @@ export function UsersView({
           </div>
           <div>
             <Label htmlFor="i-pass">{t("users.password")}</Label>
-            <Input id="i-pass" name="password" type="text" minLength={6} required />
+            <Input id="i-pass" name="password" type="text" minLength={8} required />
+            <p className="form-hint">{t("common.passwordPolicy")}</p>
           </div>
           {error && <p className="form-error">{error}</p>}
           <div className="form-footer">
@@ -258,7 +288,13 @@ export function UsersView({
       {/* Edit modal */}
       <Modal open={!!editUser} onClose={() => setEditUser(null)} title={t("common.edit")}>
         {editUser && (
-          <form action={submitEdit} className="form-stack">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              submitEdit(new FormData(e.currentTarget));
+            }}
+            className="form-stack"
+          >
             <div>
               <Label htmlFor="e-name">{t("users.fullName")}</Label>
               <Input id="e-name" name="fullName" defaultValue={editUser.name} required />
@@ -307,11 +343,18 @@ export function UsersView({
       {/* Password reset modal */}
       <Modal open={!!pwUser} onClose={() => setPwUser(null)} title={t("users.resetPassword")}>
         {pwUser && (
-          <form action={submitPassword} className="form-stack">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              submitPassword(new FormData(e.currentTarget));
+            }}
+            className="form-stack"
+          >
             <p className="users__modal-email">{pwUser.email}</p>
             <div>
               <Label htmlFor="p-pass">{t("users.newPassword")}</Label>
-              <Input id="p-pass" name="password" type="text" minLength={6} required />
+              <Input id="p-pass" name="password" type="text" minLength={8} required />
+              <p className="form-hint">{t("common.passwordPolicy")}</p>
             </div>
             {error && <p className="form-error">{error}</p>}
             <div className="form-footer">

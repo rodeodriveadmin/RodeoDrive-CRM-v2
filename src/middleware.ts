@@ -8,6 +8,8 @@ export function middleware(request: NextRequest) {
 
   const isPublic =
     pathname === "/login" ||
+    pathname === "/forgot-password" ||
+    pathname === "/reset-password" ||
     pathname.startsWith("/api/auth") ||
     pathname.startsWith("/themes/") || // organization theme CSS + brand assets
     pathname === "/manifest.webmanifest" ||

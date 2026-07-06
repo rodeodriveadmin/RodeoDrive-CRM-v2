@@ -48,6 +48,10 @@ export const commonEn = {
   "doc.linesRequired": "Add at least one line",
   "doc.paid": "Paid",
   "doc.balance": "Balance due",
+
+  "common.passwordPolicy":
+    "At least 8 characters with an uppercase letter, a lowercase letter, a number and a symbol",
+  "common.weakPassword": "Password does not meet the policy",
 } as const;
 
 export const commonAr: Record<keyof typeof commonEn, string> = {
@@ -98,4 +102,8 @@ export const commonAr: Record<keyof typeof commonEn, string> = {
   "doc.linesRequired": "أضف بنداً واحداً على الأقل",
   "doc.paid": "المدفوع",
   "doc.balance": "المتبقي",
+
+  "common.passwordPolicy":
+    "٨ أحرف على الأقل وتتضمن حرفاً كبيراً وحرفاً صغيراً ورقماً ورمزاً",
+  "common.weakPassword": "كلمة المرور لا تحقق السياسة",
 };

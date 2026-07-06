@@ -3,6 +3,7 @@ import {
   text,
   timestamp,
   boolean,
+  integer,
   doublePrecision,
   uuid,
   uniqueIndex,
@@ -94,6 +95,9 @@ export const userProfiles = pgTable("user_profiles", {
   isActive: boolean("is_active").default(true).notNull(),
   isRoot: boolean("is_root").default(false).notNull(), // root admin bypasses RBAC
   dashboardAccessEnabled: boolean("dashboard_access_enabled").default(true).notNull(),
+  // brute-force protection: 3 wrong passwords on a registered email → blocked
+  failedLoginAttempts: integer("failed_login_attempts").default(0).notNull(),
+  isBlocked: boolean("is_blocked").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
