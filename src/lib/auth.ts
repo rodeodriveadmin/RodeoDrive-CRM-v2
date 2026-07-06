@@ -32,6 +32,13 @@ export const auth = betterAuth({
     expiresIn: 60 * 60 * 24 * 7, // 7 days
     updateAge: 60 * 60 * 24,
   },
+  advanced: {
+    ipAddress: {
+      // behind Railway's proxy the client IP arrives in x-forwarded-for;
+      // without this, login rate limiting falls back to one shared bucket
+      ipAddressHeaders: ["x-forwarded-for"],
+    },
+  },
   databaseHooks: {
     session: {
       create: {
