@@ -95,6 +95,14 @@ Railway specifics: deploy from the GitHub repo (build `npm run build`, start
 `npm start` — auto-detected), add a PostgreSQL service, and on the app service set
 `DATABASE_URL = ${{Postgres.DATABASE_URL}}` plus the auth/root-admin vars above.
 
+Two Railway gotchas (both hit and fixed during the first deploy):
+
+- **Set `PORT=3000` on the app service.** Railway injects its own `PORT` (e.g. 8080)
+  which Next.js obeys, while generated/custom domains default to targeting 3000 —
+  mismatch = 502 "Application failed to respond".
+- **Attach a volume at `/app/storage`** so Drive uploads survive redeploys
+  (or swap the storage driver to R2/MinIO).
+
 ## Roadmap
 
 1. ✅ Auth, RBAC, users, departments, roles, activity log, app shell, theming, PWA

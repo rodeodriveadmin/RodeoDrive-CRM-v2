@@ -13,7 +13,6 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   // PGlite (dev database) ships native/wasm assets that must not be bundled
   serverExternalPackages: ["@electric-sql/pglite"],
-  output: "standalone",
   outputFileTracingRoot: process.cwd(),
   experimental: {
     serverActions: {
